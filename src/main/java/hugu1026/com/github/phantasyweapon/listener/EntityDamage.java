@@ -7,13 +7,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
 public class EntityDamage implements Listener{
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.NORMAL)
     public void EntityDamage(EntityDamageByEntityEvent event){
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK
                 && event.getDamager() instanceof Player
@@ -41,6 +42,8 @@ public class EntityDamage implements Listener{
 
             PhantasyWeaponAttackEvent phantasyWeaponAttackEvent = new PhantasyWeaponAttackEvent(type, player, creature);
             Bukkit.getServer().getPluginManager().callEvent(phantasyWeaponAttackEvent);
+
+            creature.setLastDamageCause(event);
         }
     }
 }

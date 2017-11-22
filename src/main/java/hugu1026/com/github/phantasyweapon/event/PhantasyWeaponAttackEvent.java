@@ -23,10 +23,10 @@ public class PhantasyWeaponAttackEvent extends Event {
         this.attacker = attacker;
         this.victim = victim;
         this.weapon= attacker.getInventory().getItemInMainHand();
-        String power = weapon.getItemMeta().getLore().get(1).replace("攻撃力:", "");
+        String power = weapon.getItemMeta().getLore().get(1).replace(ChatColor.YELLOW + "攻撃力:", "");
         this.power = Integer.parseInt(ChatColor.stripColor(power));
         String sharpness[] = weapon.getItemMeta().getLore().get(2).split("/");
-        String damaged_sharpness = sharpness[0].replace("切れ味:", "");
+        String damaged_sharpness = sharpness[0].replace(ChatColor.YELLOW + "切れ味:", "");
         String original_sharpness = sharpness[1];
         this.damaged_sharpness = Integer.parseInt(ChatColor.stripColor(damaged_sharpness));
         this.original_sharpness = Integer.parseInt(ChatColor.stripColor(original_sharpness));

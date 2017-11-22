@@ -3,9 +3,11 @@ package hugu1026.com.github.phantasyweapon.listener;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -15,10 +17,14 @@ public class PhantasyWeaponAttack implements Listener {
 
     @EventHandler
     public void PhantasyWeaponAttack(PhantasyWeaponAttackEvent event) {
+        int power = event.getPower();
+        Player attacker = event.getAttacker();
+        Creature victim = event.getVictim();
+        String type = event.getType();
+
         Random random = new Random();
         int num = random.nextInt(6); //20%
         if (num == 0) {
-            Player attacker = event.getAttacker();
             ItemMeta meta = event.getWeapon().getItemMeta();
 
             int original_sharpness = event.getOriginal_sharpness();
@@ -33,5 +39,6 @@ public class PhantasyWeaponAttack implements Listener {
 
             attacker.getInventory().getItemInMainHand().setItemMeta(meta);
         }
+        victim.damage(power);
     }
 }
