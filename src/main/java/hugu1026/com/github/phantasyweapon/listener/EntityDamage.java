@@ -19,7 +19,6 @@ public class EntityDamage implements Listener{
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK
                 && event.getDamager() instanceof Player
                 && event.getEntity() instanceof Creature
-                && ((Player) event.getDamager()).getInventory().getItemInMainHand().getType() == Material.IRON_SWORD
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().hasLore()
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().getLore()
                 .get(0).startsWith(ChatColor.YELLOW + "ジャンル:")) {
