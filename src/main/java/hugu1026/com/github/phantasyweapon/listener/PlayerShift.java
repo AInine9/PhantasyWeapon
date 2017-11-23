@@ -22,8 +22,6 @@ public class PlayerShift implements Listener {
                 && item.getItemMeta().hasLore()
                 && item.getItemMeta().getLore().get(0).startsWith(ChatColor.YELLOW + "ジャンル:")) {
 
-            Bukkit.getServer().broadcastMessage("executed");
-
             ExecuteWeaponAbilityEvent executeWeaponAbilityEvent = new ExecuteWeaponAbilityEvent(player);
             Bukkit.getServer().getPluginManager().callEvent(executeWeaponAbilityEvent);
         }
