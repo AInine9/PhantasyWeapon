@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class PhantasyWeaponAttack implements Listener {
         Player attacker = event.getAttacker();
         Creature victim = event.getVictim();
         String type = event.getType();
+        ItemStack weapon = event.getWeapon();
 
         Random random = new Random();
         int num = random.nextInt(6); //20%
@@ -40,5 +42,9 @@ public class PhantasyWeaponAttack implements Listener {
             attacker.getInventory().getItemInMainHand().setItemMeta(meta);
         }
         victim.damage(power);
+
+        if(weapon.getDurability() != 0) {
+            weapon.setDurability((short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.05));
+        }
     }
 }

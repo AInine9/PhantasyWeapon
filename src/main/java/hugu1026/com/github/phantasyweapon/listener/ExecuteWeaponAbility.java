@@ -3,6 +3,8 @@ package hugu1026.com.github.phantasyweapon.listener;
 import hugu1026.com.github.phantasyweapon.event.ExecuteWeaponAbilityEvent;
 import hugu1026.com.github.phantasyweapon.weapon.Spear;
 import hugu1026.com.github.phantasyweapon.weapon.Weapon;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,12 +18,21 @@ public class ExecuteWeaponAbility implements Listener {
         String type = event.getType();
         ItemStack weapon = event.getWeapon();
         Weapon weapon_class = null;
-        switch (type) {
-            case "スピア":
-                weapon_class = new Spear();
-                break;
-        }
 
-        weapon_class.WeaponAbility(player, weapon);
+        Bukkit.getServer().broadcastMessage(weapon.getDurability() + "/" + weapon.getType().getMaxDurability());
+        if((weapon.getDurability() == 0)) {
+
+            switch (type) {
+                case "スピア":
+                    weapon_class = new Spear();
+                    break;
+            }
+
+            weapon_class.WeaponAbility(player, weapon);
+            weapon.setDurability((short) (weapon.getType().getMaxDurability() - 1));
+
+        } else {
+            player.sendMessage(ChatColor.RED + "APが足りない！");
+        }
     }
 }
