@@ -17,8 +17,10 @@ public class PhantasyWeaponAttackEvent extends Event {
     private int power;
     private int original_sharpness;
     private int damaged_sharpness;
+    private Event entityDamageEvent;
 
-    public PhantasyWeaponAttackEvent(String type, Player attacker, Creature victim) {
+    public PhantasyWeaponAttackEvent(String type, Player attacker, Creature victim, Event entityDamageEvent) {
+        this.entityDamageEvent = entityDamageEvent;
         this.type = type;
         this.attacker = attacker;
         this.victim = victim;
@@ -67,5 +69,9 @@ public class PhantasyWeaponAttackEvent extends Event {
 
     public int getOriginal_sharpness() {
         return original_sharpness;
+    }
+
+    public Event getEvent() {
+        return entityDamageEvent;
     }
 }

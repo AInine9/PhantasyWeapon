@@ -18,20 +18,30 @@ public class PhantasyWeaponAttack implements Listener {
 
     @EventHandler
     public void PhantasyWeaponAttack(PhantasyWeaponAttackEvent event) {
-        int power = event.getPower();
+        double power = event.getPower();
         Player attacker = event.getAttacker();
         Creature victim = event.getVictim();
         String type = event.getType();
         ItemStack weapon = event.getWeapon();
+        int original_sharpness;
+        int damaged_sharpness;
+        int attacked_sharpness;
+
+        original_sharpness = event.getOriginal_sharpness();
+        damaged_sharpness = event.getDamaged_sharpness();
+        attacked_sharpness = damaged_sharpness - 1;
+
+        if(damaged_sharpness == 0) {
+            attacker.sendMessage(ChatColor.RED + "切れ味が落ちてしまっている！");
+            return;
+        }
+
+        weapon.setDurability((short) (weapon.getDurability() - 2));
 
         Random random = new Random();
         int num = random.nextInt(6); //20%
         if (num == 0) {
             ItemMeta meta = event.getWeapon().getItemMeta();
-
-            int original_sharpness = event.getOriginal_sharpness();
-            int damaged_sharpness = event.getDamaged_sharpness();
-            int attacked_sharpness = damaged_sharpness - 1;
 
             Bukkit.getServer().broadcastMessage(original_sharpness + " " + damaged_sharpness);
 
@@ -41,7 +51,10 @@ public class PhantasyWeaponAttack implements Listener {
 
             attacker.getInventory().getItemInMainHand().setItemMeta(meta);
         }
-        victim.damage(power);
+
+        double proportion = (double) damaged_sharpness / original_sharpness;
+        EntityDamageEvent entityDamageEvent = (EntityDamageEvent) event.getEvent();
+        entityDamageEvent.setDamage(power * proportion);
 
         if(weapon.getDurability() != 0) {
             weapon.setDurability((short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.05));

@@ -3,7 +3,6 @@ package hugu1026.com.github.phantasyweapon.listener;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +18,7 @@ public class EntityDamage implements Listener{
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK
                 && event.getDamager() instanceof Player
                 && event.getEntity() instanceof Creature
+                && ((Player) event.getDamager()).getInventory().getItemInMainHand().hasItemMeta()
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().hasLore()
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().getLore()
                 .get(0).startsWith(ChatColor.YELLOW + "ジャンル:")) {
@@ -37,12 +37,8 @@ public class EntityDamage implements Listener{
 
             if(type == null) return;
 
-            event.setCancelled(true);
-
-            PhantasyWeaponAttackEvent phantasyWeaponAttackEvent = new PhantasyWeaponAttackEvent(type, player, creature);
+            PhantasyWeaponAttackEvent phantasyWeaponAttackEvent = new PhantasyWeaponAttackEvent(type, player, creature, event);
             Bukkit.getServer().getPluginManager().callEvent(phantasyWeaponAttackEvent);
-
-            creature.setLastDamageCause(event);
         }
     }
 }
