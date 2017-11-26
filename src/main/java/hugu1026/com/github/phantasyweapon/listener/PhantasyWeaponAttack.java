@@ -56,8 +56,14 @@ public class PhantasyWeaponAttack implements Listener {
         EntityDamageEvent entityDamageEvent = (EntityDamageEvent) event.getEvent();
         entityDamageEvent.setDamage(power * proportion);
 
-        if(weapon.getDurability() != 0) {
-            weapon.setDurability((short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.05));
+        short healAbilityPoint = (short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.03);
+
+        if(weapon.getDurability() == 0) return;
+
+        if(healAbilityPoint <= 0) {
+            weapon.setDurability((short) 0);
+        } else {
+            weapon.setDurability(healAbilityPoint);
         }
     }
 }
