@@ -1,6 +1,7 @@
 package hugu1026.com.github.phantasyweapon.listener;
 
 import hugu1026.com.github.phantasyweapon.event.ExecuteWeaponAbilityEvent;
+import hugu1026.com.github.phantasyweapon.weapon.Rapier;
 import hugu1026.com.github.phantasyweapon.weapon.Spear;
 import hugu1026.com.github.phantasyweapon.weapon.Weapon;
 import org.bukkit.Bukkit;
@@ -25,6 +26,9 @@ public class ExecuteWeaponAbility implements Listener {
             switch (type) {
                 case "スピア":
                     weapon_class = new Spear();
+                    break;
+                case "レイピア":
+                    weapon_class = new Rapier();
                     break;
             }
 
