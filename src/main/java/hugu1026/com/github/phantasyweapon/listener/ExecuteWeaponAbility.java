@@ -1,6 +1,7 @@
 package hugu1026.com.github.phantasyweapon.listener;
 
 import hugu1026.com.github.phantasyweapon.event.ExecuteWeaponAbilityEvent;
+import hugu1026.com.github.phantasyweapon.weapon.Halberd;
 import hugu1026.com.github.phantasyweapon.weapon.Rapier;
 import hugu1026.com.github.phantasyweapon.weapon.Spear;
 import hugu1026.com.github.phantasyweapon.weapon.Weapon;
@@ -29,6 +30,9 @@ public class ExecuteWeaponAbility implements Listener {
                     break;
                 case "レイピア":
                     weapon_class = new Rapier();
+                    break;
+                case "ハルバード":
+                    weapon_class = new Halberd();
                     break;
             }
 
