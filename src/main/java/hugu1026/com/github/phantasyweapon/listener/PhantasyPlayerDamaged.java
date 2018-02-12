@@ -22,9 +22,10 @@ public class PhantasyPlayerDamaged implements Listener {
         double originalDamage = event.getOriginalDamage();
         double playerHP = event.getPlayerHP();
         double playerMaxHP = event.getPlayerMAX_HP();
+        int playerDefense = PlayerDataUtil.getPlayerDEFEND(player);
         int defensePower = event.getDefenseHelmet() + event.getDefenseChestPlate() + event.getDefenseLeggings() + event.getDefenseBoots();
 
-        double damage = (originalDamage * 1.05) - defensePower / 4;
+        double damage = (originalDamage * 1.05) - (defensePower + (playerDefense / 2) / 4);
 
         playerData.set("status.HP", playerHP - damage);
         PlayerDataUtil.savePlayerData(playerFile, playerData, player);
