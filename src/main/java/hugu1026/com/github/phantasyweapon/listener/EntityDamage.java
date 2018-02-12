@@ -11,12 +11,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 
-public class EntityDamage implements Listener{
+public class EntityDamage implements Listener {
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void EntityDamage(EntityDamageByEntityEvent event){
+    @EventHandler (priority = EventPriority.NORMAL)
+    public void EntityDamage(EntityDamageByEntityEvent event) {
 
-        if(!(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) == 1 || event.getDamage() == 1.5)) {
+        if (!(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) == 1 || event.getDamage() == 1.5)) {
             event.setCancelled(true);
             return;
         }
@@ -41,7 +41,7 @@ public class EntityDamage implements Listener{
 
             type = ChatColor.stripColor(type);
 
-            if(type == null) return;
+            if (type == null) return;
 
             PhantasyWeaponAttackEvent phantasyWeaponAttackEvent = new PhantasyWeaponAttackEvent(type, player, creature, event);
             Bukkit.getServer().getPluginManager().callEvent(phantasyWeaponAttackEvent);

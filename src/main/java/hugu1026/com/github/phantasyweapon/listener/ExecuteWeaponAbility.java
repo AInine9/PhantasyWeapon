@@ -22,7 +22,7 @@ public class ExecuteWeaponAbility implements Listener {
         Weapon weapon_class = null;
 
         Bukkit.getServer().broadcastMessage(weapon.getDurability() + "/" + weapon.getType().getMaxDurability());
-        if((weapon.getDurability() == 0)) {
+        if ((weapon.getDurability() == 0)) {
 
             switch (type) {
                 case "スピア":

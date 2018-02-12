@@ -12,7 +12,7 @@ import java.io.File;
 
 public class PhantasyPlayerDamaged implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void PhantasyPlayerDamaged(PhantasyPlayerDamagedEvent event) {
         Player player = event.getPlayer();
 
@@ -33,36 +33,36 @@ public class PhantasyPlayerDamaged implements Listener {
         playerHP = playerHP - damage;
         double proportion = playerHP / playerMaxHP;
 
-        if(1 >= proportion && proportion > 0.9) {
+        if (1 >= proportion && proportion > 0.9) {
             player.damage(0);
-        } else if(proportion > 0.8) {
+        } else if (proportion > 0.8) {
             player.setHealth(18);
             player.damage(0);
-        } else if(proportion > 0.7) {
+        } else if (proportion > 0.7) {
             player.setHealth(16);
             player.damage(0);
-        } else if(proportion > 0.6) {
+        } else if (proportion > 0.6) {
             player.setHealth(14);
             player.damage(0);
-        } else if(proportion > 0.5) {
+        } else if (proportion > 0.5) {
             player.setHealth(12);
             player.damage(0);
-        } else if(proportion > 0.4) {
+        } else if (proportion > 0.4) {
             player.setHealth(10);
             player.damage(0);
-        } else if(proportion > 0.3) {
+        } else if (proportion > 0.3) {
             player.setHealth(8);
             player.damage(0);
-        } else if(proportion > 0.2) {
+        } else if (proportion > 0.2) {
             player.setHealth(6);
             player.damage(0);
-        } else if(proportion > 0.1) {
+        } else if (proportion > 0.1) {
             player.setHealth(4);
             player.damage(0);
-        } else if(proportion > 0) {
+        } else if (proportion > 0) {
             player.setHealth(2);
             player.damage(0);
-        } else if(proportion <= 0) {
+        } else if (proportion <= 0) {
             player.damage(20);
 
             playerData.set("status.HP", playerData.getInt("status.addition.HP") + 20);

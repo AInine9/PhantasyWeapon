@@ -25,37 +25,37 @@ public class PhantasyPlayerDamagedEvent extends Event {
         ItemStack leggings = player.getInventory().getLeggings();
         ItemStack boots = player.getInventory().getBoots();
 
-        if(helmet == null) {
+        if (helmet == null) {
             this.defenseHelmet = 0;
         } else {
             this.defenseHelmet = Integer.parseInt(ChatColor.stripColor(helmet.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
-        if(chestPlate == null) {
+        if (chestPlate == null) {
             this.defenseHelmet = 0;
         } else {
             this.defenseChestPlate = Integer.parseInt(ChatColor.stripColor(chestPlate.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
-        if(leggings == null) {
+        if (leggings == null) {
             this.defenseHelmet = 0;
         } else {
             this.defenseLeggings = Integer.parseInt(ChatColor.stripColor(leggings.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
-        if(boots == null) {
+        if (boots == null) {
             this.defenseHelmet = 0;
         } else {
             this.defenseBoots = Integer.parseInt(ChatColor.stripColor(boots.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    public static  HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return handlers;
     }
 

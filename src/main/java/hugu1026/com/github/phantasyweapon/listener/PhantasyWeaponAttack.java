@@ -32,7 +32,7 @@ public class PhantasyWeaponAttack implements Listener {
         damaged_sharpness = event.getDamaged_sharpness();
         attacked_sharpness = damaged_sharpness - 1;
 
-        if(damaged_sharpness == 0) {
+        if (damaged_sharpness == 0) {
             attacker.sendMessage(ChatColor.RED + "切れ味が落ちてしまっている！");
             return;
         }
@@ -57,9 +57,9 @@ public class PhantasyWeaponAttack implements Listener {
 
         short healAbilityPoint = (short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.03);
 
-        if(weapon.getDurability() == 0) return;
+        if (weapon.getDurability() == 0) return;
 
-        if(healAbilityPoint <= 0) {
+        if (healAbilityPoint <= 0) {
             weapon.setDurability((short) 0);
         } else {
             weapon.setDurability(healAbilityPoint);

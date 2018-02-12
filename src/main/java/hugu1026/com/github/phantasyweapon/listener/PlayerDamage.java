@@ -10,10 +10,10 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class PlayerDamage implements Listener {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler (priority = EventPriority.HIGHEST)
     public void PlayerDamage(EntityDamageEvent event) {
-        if(!(event.getEntity() instanceof Player)) return;
-        if(event.getCause().equals(EntityDamageEvent.DamageCause.CUSTOM)) return;
+        if (!(event.getEntity() instanceof Player)) return;
+        if (event.getCause().equals(EntityDamageEvent.DamageCause.CUSTOM)) return;
 
         Player player = (Player) event.getEntity();
 

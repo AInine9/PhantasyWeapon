@@ -16,11 +16,11 @@ public class PlayerShift implements Listener {
         Player player = event.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        if(item.getType() == null
+        if (item.getType() == null
                 || !item.hasItemMeta()
                 || !item.getItemMeta().hasLore()) return;
 
-        if(!player.isSneaking()
+        if (!player.isSneaking()
                 && item.getItemMeta().getLore().get(0).startsWith(ChatColor.YELLOW + "ジャンル:")) {
 
             ExecuteWeaponAbilityEvent executeWeaponAbilityEvent = new ExecuteWeaponAbilityEvent(player);

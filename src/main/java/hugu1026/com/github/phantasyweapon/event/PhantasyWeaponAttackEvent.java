@@ -24,7 +24,7 @@ public class PhantasyWeaponAttackEvent extends Event {
         this.type = type;
         this.attacker = attacker;
         this.victim = victim;
-        this.weapon= attacker.getInventory().getItemInMainHand();
+        this.weapon = attacker.getInventory().getItemInMainHand();
         String power = weapon.getItemMeta().getLore().get(1).replace(ChatColor.YELLOW + "攻撃力:", "");
         this.power = Integer.parseInt(ChatColor.stripColor(power));
         String sharpness[] = weapon.getItemMeta().getLore().get(2).split("/");
@@ -34,12 +34,12 @@ public class PhantasyWeaponAttackEvent extends Event {
         this.original_sharpness = Integer.parseInt(ChatColor.stripColor(original_sharpness));
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return handlers;
     }
 
-    public static  HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return handlers;
     }
 
