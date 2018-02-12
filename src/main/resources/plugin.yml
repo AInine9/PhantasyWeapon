@@ -1,3 +1,4 @@
 name: PhantasyWeapon
 version: ${project.version}
 main: hugu1026.com.github.phantasyweapon.PhantasyWeapon
+depend: [PhantasyStatus]

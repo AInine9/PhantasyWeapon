@@ -1,1 +1,4 @@
 # PhantasyWeapon
+===
+# Licence
+No Licence
