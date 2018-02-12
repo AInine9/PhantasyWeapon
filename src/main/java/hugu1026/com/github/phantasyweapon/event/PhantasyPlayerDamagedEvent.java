@@ -28,25 +28,25 @@ public class PhantasyPlayerDamagedEvent extends Event {
         if(helmet == null) {
             this.defenseHelmet = 0;
         } else {
-            this.defenseHelmet = Integer.parseInt(ChatColor.stripColor(helmet.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力", "")));
+            this.defenseHelmet = Integer.parseInt(ChatColor.stripColor(helmet.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
         if(chestPlate == null) {
             this.defenseHelmet = 0;
         } else {
-            this.defenseChestPlate = Integer.parseInt(ChatColor.stripColor(chestPlate.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力", "")));
+            this.defenseChestPlate = Integer.parseInt(ChatColor.stripColor(chestPlate.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
         if(leggings == null) {
             this.defenseHelmet = 0;
         } else {
-            this.defenseLeggings = Integer.parseInt(ChatColor.stripColor(leggings.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力", "")));
+            this.defenseLeggings = Integer.parseInt(ChatColor.stripColor(leggings.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
 
         if(boots == null) {
             this.defenseHelmet = 0;
         } else {
-            this.defenseBoots = Integer.parseInt(ChatColor.stripColor(boots.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力", "")));
+            this.defenseBoots = Integer.parseInt(ChatColor.stripColor(boots.getItemMeta().getLore().get(0).replace(ChatColor.YELLOW + "防御力:", "")));
         }
     }
 
