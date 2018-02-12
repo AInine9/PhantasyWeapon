@@ -1,7 +1,7 @@
 package hugu1026.com.github.phantasyweapon.listener;
 
+import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
@@ -26,6 +26,7 @@ public class PhantasyWeaponAttack implements Listener {
         int original_sharpness;
         int damaged_sharpness;
         int attacked_sharpness;
+        int playerPower = PlayerDataUtil.getPlayerATTACK(attacker);
 
         original_sharpness = event.getOriginal_sharpness();
         damaged_sharpness = event.getDamaged_sharpness();
@@ -43,8 +44,6 @@ public class PhantasyWeaponAttack implements Listener {
         if (num == 0) {
             ItemMeta meta = event.getWeapon().getItemMeta();
 
-            Bukkit.getServer().broadcastMessage(original_sharpness + " " + damaged_sharpness);
-
             List<String> lore = event.getWeapon().getItemMeta().getLore();
             lore.set(2, ChatColor.YELLOW + "切れ味:" + attacked_sharpness + "/" + original_sharpness);
             meta.setLore(lore);
@@ -54,7 +53,7 @@ public class PhantasyWeaponAttack implements Listener {
 
         double proportion = (double) damaged_sharpness / original_sharpness;
         EntityDamageEvent entityDamageEvent = (EntityDamageEvent) event.getEvent();
-        entityDamageEvent.setDamage(power * proportion);
+        entityDamageEvent.setDamage((power + (playerPower * 0.5)) * proportion);
 
         short healAbilityPoint = (short) (weapon.getDurability() - weapon.getType().getMaxDurability() * 0.03);
 
