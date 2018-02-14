@@ -15,22 +15,29 @@ public class EntityDamage implements Listener {
 
     @EventHandler (priority = EventPriority.NORMAL)
     public void EntityDamage(EntityDamageByEntityEvent event) {
+        Creature creature;
 
         if (!(event.getOriginalDamage(EntityDamageEvent.DamageModifier.BASE) == 1 || event.getDamage() == 1.5)) {
             event.setCancelled(true);
             return;
         }
 
+        if (event.getEntity() instanceof Creature) {
+            creature = (Creature) event.getEntity();
+        } else {
+            return;
+        }
+
+        creature.setNoDamageTicks(0);
+
         if (event.getCause() == EntityDamageEvent.DamageCause.ENTITY_ATTACK
                 && event.getDamager() instanceof Player
-                && event.getEntity() instanceof Creature
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().hasItemMeta()
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().hasLore()
                 && ((Player) event.getDamager()).getInventory().getItemInMainHand().getItemMeta().getLore()
                 .get(0).startsWith(ChatColor.YELLOW + "ジャンル:")) {
 
             Player player = (Player) event.getDamager();
-            Creature creature = (Creature) event.getEntity();
             String type;
 
             try {
