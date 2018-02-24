@@ -28,5 +28,6 @@ public final class PhantasyWeapon extends JavaPlugin {
         pm.registerEvents(new ExecuteWeaponAbility(), this);
         pm.registerEvents(new PlayerDamage(), this);
         pm.registerEvents(new PhantasyPlayerDamaged(), this);
+        pm.registerEvents(new PlayerInteract(), this);
     }
 }
