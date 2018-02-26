@@ -5,7 +5,6 @@ import hugu1026.com.github.phantasyweapon.weapon.Halberd;
 import hugu1026.com.github.phantasyweapon.weapon.Rapier;
 import hugu1026.com.github.phantasyweapon.weapon.Spear;
 import hugu1026.com.github.phantasyweapon.weapon.Weapon;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -21,7 +20,6 @@ public class ExecuteWeaponAbility implements Listener {
         ItemStack weapon = event.getWeapon();
         Weapon weapon_class = null;
 
-        Bukkit.getServer().broadcastMessage(weapon.getDurability() + "/" + weapon.getType().getMaxDurability());
         if ((weapon.getDurability() == 0)) {
 
             switch (type) {
@@ -36,8 +34,10 @@ public class ExecuteWeaponAbility implements Listener {
                     break;
             }
 
-            weapon_class.WeaponAbility(player, weapon);
-            weapon.setDurability((short) (weapon.getType().getMaxDurability() - 1));
+            if (weapon_class != null) {
+                weapon_class.WeaponAbility(player, weapon);
+                weapon.setDurability((short) (weapon.getType().getMaxDurability() - 1));
+            }
 
         } else {
             player.sendMessage(ChatColor.RED + "APが足りない！");
