@@ -27,6 +27,10 @@ public class PhantasyPlayerDamaged implements Listener {
 
         double damage = (originalDamage * 1.05) - (defensePower + (playerDefense / 2) / 4);
 
+        if (damage < 0) {
+            damage = 1;
+        }
+
         playerData.set("status.HP", playerHP - damage);
         PlayerDataUtil.savePlayerData(playerFile, playerData, player);
 
