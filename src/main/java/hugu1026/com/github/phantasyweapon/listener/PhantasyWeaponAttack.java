@@ -2,6 +2,9 @@ package hugu1026.com.github.phantasyweapon.listener;
 
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Player;
@@ -20,8 +23,6 @@ public class PhantasyWeaponAttack implements Listener {
     public void PhantasyWeaponAttack(PhantasyWeaponAttackEvent event) {
         double power = event.getPower();
         Player attacker = event.getAttacker();
-        Creature victim = event.getVictim();
-        String type = event.getType();
         ItemStack weapon = event.getWeapon();
         int original_sharpness;
         int damaged_sharpness;
@@ -64,5 +65,6 @@ public class PhantasyWeaponAttack implements Listener {
         } else {
             weapon.setDurability(healAbilityPoint);
         }
+        attacker.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(net.md_5.bungee.api.ChatColor.RED + event.getVictim().getCustomName()));
     }
 }
