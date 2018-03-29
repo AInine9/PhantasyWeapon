@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 public class EntityDamage implements Listener {
 
-    @EventHandler (priority = EventPriority.NORMAL)
+    @EventHandler(priority = EventPriority.NORMAL)
     public void EntityDamage(EntityDamageByEntityEvent event) {
         Creature creature;
 

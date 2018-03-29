@@ -12,7 +12,7 @@ import java.io.File;
 
 public class PhantasyPlayerDamaged implements Listener {
 
-    @EventHandler (priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void PhantasyPlayerDamaged(PhantasyPlayerDamagedEvent event) {
         Player player = event.getPlayer();
 
@@ -25,7 +25,7 @@ public class PhantasyPlayerDamaged implements Listener {
         int playerDefense = PlayerDataUtil.getPlayerDEFEND(player);
         int defensePower = event.getDefenseHelmet() + event.getDefenseChestPlate() + event.getDefenseLeggings() + event.getDefenseBoots();
 
-        double damage = (originalDamage * 1.05) - (defensePower + (playerDefense / 2))/ 4;
+        double damage = (originalDamage * 1.05) - (defensePower + (playerDefense / 2)) / 4;
 
         if (damage < 0) {
             damage = 1;
