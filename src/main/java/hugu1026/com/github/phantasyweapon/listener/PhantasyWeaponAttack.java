@@ -1,9 +1,12 @@
 package hugu1026.com.github.phantasyweapon.listener;
 
 import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
+import hugu1026.com.github.phantasyweapon.PhantasyWeapon;
+import hugu1026.com.github.phantasyweapon.enchant.Glow;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,6 +29,7 @@ public class PhantasyWeaponAttack implements Listener {
         int damaged_sharpness;
         int attacked_sharpness;
         int playerPower = PlayerDataUtil.getPlayerATTACK(attacker);
+        String type = event.getType();
 
         original_sharpness = event.getOriginal_sharpness();
         damaged_sharpness = event.getDamaged_sharpness();
@@ -64,5 +68,18 @@ public class PhantasyWeaponAttack implements Listener {
             weapon.setDurability(healAbilityPoint);
         }
         attacker.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(net.md_5.bungee.api.ChatColor.RED + event.getVictim().getCustomName()));
+
+        if (weapon.getItemMeta().hasEnchant(new Glow(100))) switch (type) {
+            case "クロー":
+                Bukkit.getScheduler().scheduleSyncDelayedTask(PhantasyWeapon.getPlugin(PhantasyWeapon.class), () -> {
+                    event.getVictim().damage((power + (playerPower * 0.5)) * proportion);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(PhantasyWeapon.getPlugin(PhantasyWeapon.class), () -> {
+                        event.getVictim().damage((power + (playerPower * 0.5)) * proportion);
+                        ItemMeta meta = event.getAttacker().getInventory().getItemInMainHand().getItemMeta();
+                        meta.removeEnchant(new Glow(100));
+                        event.getAttacker().getInventory().getItemInMainHand().setItemMeta(meta);
+                    }, 10L);
+                }, 10L);
+        }
     }
 }
