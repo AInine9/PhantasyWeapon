@@ -20,6 +20,7 @@ public class PlayerDamage implements Listener {
         PhantasyPlayerDamagedEvent playerDamagedEvent = new PhantasyPlayerDamagedEvent(player, event.getDamage());
         Bukkit.getServer().getPluginManager().callEvent(playerDamagedEvent);
 
+        ((Player) event.getEntity()).damage(0.1);
         event.setCancelled(true);
     }
 }
