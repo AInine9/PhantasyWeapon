@@ -4,6 +4,7 @@ import hugu1026.com.github.phantasystatus.util.PlayerDataUtil;
 import hugu1026.com.github.phantasyweapon.enchant.Glow;
 import hugu1026.com.github.phantasyweapon.event.PhantasyWeaponAttackEvent;
 import hugu1026.com.github.phantasyweapon.weapon.Claw;
+import hugu1026.com.github.phantasyweapon.weapon.Katana;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
@@ -72,6 +73,9 @@ public class PhantasyWeaponAttack implements Listener {
             case "クロー":
                 Claw claw = new Claw();
                 claw.AttackWithAbility(event);
+            case "カタナ":
+                Katana katana = new Katana();
+                katana.AttackWithAbility(event);
         }
     }
 }

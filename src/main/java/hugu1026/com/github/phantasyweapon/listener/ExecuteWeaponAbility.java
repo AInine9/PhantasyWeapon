@@ -32,6 +32,9 @@ public class ExecuteWeaponAbility implements Listener {
                 case "クロー":
                     weapon_class = new Claw();
                     break;
+                case "カタナ":
+                    weapon_class = new Katana();
+                    break;
             }
 
             if (weapon_class != null) {
